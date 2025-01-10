@@ -1,11 +1,9 @@
-use std::fmt::format;
-
-use pages::{listing::ThreadListing, thread::Thread};
+use forums::{listing::ThreadListing, thread::Thread};
 use reqwest::{blocking::Client, Method};
 use scraper::Html;
 
 pub mod app;
-pub mod pages;
+pub mod forums;
 
 fn main() {
     println!("Hello, world!");
