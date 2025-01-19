@@ -22,10 +22,13 @@ impl Widget for &CurrentWindow {
         match self {
             CurrentWindow::Homepage => draw_homepage(area, buf),
             CurrentWindow::AllForumCategories => draw_forum_categories(area, buf),
-            CurrentWindow::ForumCategory(thread_listing) => {
-                draw_forum_category(area, buf, thread_listing)
+            CurrentWindow::ForumCategory {
+                thread_listing,
+                scrolled_by,
+            } => draw_forum_category(area, buf, thread_listing, *scrolled_by),
+            CurrentWindow::ForumThread { thread, reply_idx } => {
+                draw_forum_thread(area, buf, thread, *reply_idx)
             }
-            CurrentWindow::ForumThread(thread_view) => draw_forum_thread(area, buf, thread_view),
         }
     }
 }

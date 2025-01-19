@@ -1,11 +1,11 @@
 use scraper::{ElementRef, Html, Selector};
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct ThreadListing {
     pub threads: Vec<ThreadView>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct ThreadView {
     pub name: String,
     pub author: String,
@@ -18,8 +18,8 @@ impl ThreadListing {
 
         let thread_view_selector = Selector::parse(
             "
-        div.structItemContainer 
-        > div.structItemContainer-group.js-threadList 
+        div.structItemContainer
+        > div.structItemContainer-group.js-threadList
         > div.structItem.structItem--thread",
         )
         .unwrap();
@@ -36,9 +36,9 @@ impl ThreadView {
     pub fn from_div(element: ElementRef<'_>) -> ThreadView {
         let name_selector = Selector::parse(
             "
-        div.structItem--thread 
-        > div.structItem-cell--main 
-        > div.structItem-title 
+        div.structItem--thread
+        > div.structItem-cell--main
+        > div.structItem-title
         > a",
         )
         .unwrap();
